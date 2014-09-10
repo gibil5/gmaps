@@ -4,16 +4,16 @@
 
 Rails.application.routes.draw do
 
-  #get 'static_pages/home'
-  #get 'static_pages/help'
+
+  resources :restaurants
 
 #         url           controller action                 http request 
   root  'static_pages#home'
-  match '/help',        to: 'static_pages#help',          via: 'get'
-  match '/map1',    to: 'static_pages#map1',          via: 'get'
-  match '/map2',    to: 'static_pages#map2',          via: 'get'
-
-
+  match '/help',            to: 'static_pages#help',          via: 'get'
+  match '/map1',            to: 'static_pages#map1',          via: 'get'
+  match '/map2',            to: 'static_pages#map2',          via: 'get'
+#  match '/restaurants', to: 'restaurants#new',            via: 'get'
+  #restaurants_new GET  /restaurants/new(.:format) restaurants#new
 
 
   # The priority is based upon order of creation: first created -> highest priority.
