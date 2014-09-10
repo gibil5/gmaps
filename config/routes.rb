@@ -1,7 +1,20 @@
-Rails.application.routes.draw do
-  get 'static_pages/home'
 
-  get 'static_pages/help'
+# jr@oblique:  10/9/14
+
+
+Rails.application.routes.draw do
+
+  #get 'static_pages/home'
+  #get 'static_pages/help'
+
+#         url           controller action                 http request 
+  root  'static_pages#home'
+  match '/help',        to: 'static_pages#help',          via: 'get'
+  match '/map1',    to: 'static_pages#map1',          via: 'get'
+  match '/map2',    to: 'static_pages#map2',          via: 'get'
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
