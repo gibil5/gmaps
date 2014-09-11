@@ -1,0 +1,28 @@
+
+
+<% provide(:title, 'All restaurants') %>
+
+<h1>All restaurants</h1>
+
+<%= will_paginate %>
+
+
+<ul class="users">
+  
+  <%= render @restaurants %>
+
+<%# @restaurants.keys.sort.each do |restaurant| %>
+    <%#= starting_letter %>
+    <%# @restaurants[starting_letter].each do |restaurant| %>
+
+    <%#= restaurant %>
+  	<%#= render @restaurant %>
+
+  <%# end %>
+<%# end %>
+
+</ul>
+
+
+<%= will_paginate %>
+
