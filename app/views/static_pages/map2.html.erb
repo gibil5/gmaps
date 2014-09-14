@@ -4,58 +4,65 @@
   <h1>Map 2</h1>
 
 
+<!--
+-->
 <div style='width: 800px;'>
-	<div id="sidebar_builder" style='width: 800px; height: 400px;'></div>
-</div>
-
-<div id='sidebar_container'>
+  <div id="multi_markers_dynamic" style='width: 800px; height: 400px;'></div>
 </div>
 
 
 
 <script type="text/javascript">
 
-function createSidebarLi(json){
-  return ("<li><a>" + json.name + "</a></li>");
-};
+  var handler = Gmaps.build('Google');
 
-function bindLiToMarker($li, marker){
-  $li.on('click', function(){
-    handler.getMap().setZoom(14);
-    marker.setMap(handler.getMap()); //because clusterer removes map property from marker
-    marker.panTo();
-    google.maps.event.trigger(marker.getServiceObject(), 'click');
-  })
-};
+  //var jr_markers = handler.addMarkers([
+  //      { lat:-12.109111, lng:-77.032583},
+  //     { lat: -12.088798, lng:-77.045025},
+  //      { lat:-12.089564, lng:-77.080865},
+  //]);
+  var jr_lat_1 = -12.109111;
+  var jr_lng_1 = -77.032583;
 
-function createSidebar(json_array){
-  _.each(json_array, function(json){
-    var $li = $( createSidebarLi(json) );
-    $li.appendTo('#sidebar_container');
-    bindLiToMarker($li, json.marker);
-  });
-};
+  var jr_mark_ah = [
+          //{ lat:-12.109111, lng:-77.032583},
+          { lat: jr_lat_1, lng: jr_lng_1},
+          { lat: -12.088798, lng:-77.045025},
+          { lat:-12.089564, lng:-77.080865}
+        ];
+   
+  var stuff = <%= @ruby_var.title.to_json %>;
 
-handler = Gmaps.build('Google');
-handler.buildMap({ internal: {id: 'sidebar_builder'}}, function(){
-  
-  var json_array = [
 
-    { lat: 40, lng: -80, name: 'Foo', infowindow: "I'm Foo" },
-    { lat: 45, lng: -90, name: 'Bar', infowindow: "I'm Bar" },
-    { lat: 50, lng: -85, name: 'Baz', infowindow: "I'm Baz" }
+  handler.buildMap(
 
-  ];
+    { internal: {id: 'multi_markers_dynamic'}}, 
 
-  var markers = handler.addMarkers(json_array);
+    function(){
+//    { lat: 
+//    , lng: 
+//    },
 
-  _.each(json_array, function(json, index){
-    json.marker = markers[index];
-  });
 
-  createSidebar(json_array);
+      var markers = handler.addMarkers(
+
+        //[
+          //{ lat:-12.109111, lng:-77.032583},
+        //  { lat: jr_lat_1, lng: jr_lng_1},
+        //  { lat: -12.088798, lng:-77.045025},
+        //  { lat:-12.089564, lng:-77.080865},
+        //]);
+      jr_mark_ah);
+
+
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
-});
+  }
+
+);
+
 </script> 
+
+
+
 
