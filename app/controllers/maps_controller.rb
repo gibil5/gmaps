@@ -4,22 +4,26 @@
 
 class MapsController < ApplicationController
 
+
   def new
   	@map = Map.new
   end
 
 
-  def create
 
+  def create
   	@map = Map.new(map_params)
-    
+
+    # Load the points 
+    @points = Point.find_by(map_type: "restaurants")
+
     if @map.save
       flash[:success] = "Welcome to the Sample App!"
     else
       render 'new'
     end
-
   end
+
 
 
   def show
@@ -27,10 +31,12 @@ class MapsController < ApplicationController
   end
  
 
+
  private
+
     def map_params
       #params.require(:map).permit(:name, :info, :lat_dec, :long_dec)
-      params.require(:map).permit(:name, :points)
+      params.require(:map).permit(:name, :map_type, :created_by, :last_updated_by, :comments)
     end
 
 

@@ -5,16 +5,20 @@
 Rails.application.routes.draw do
 
 
-  get 'maps/new'
+  get 'points/new'
 
-  get 'maps/create'
-
-  get 'maps/show'
+  #get 'maps/new'
+  #get 'maps/create'
+  #get 'maps/show'
 
   resources :restaurants
+  resources :maps
+  resources :points
 
 #         url           controller action                 http request 
   root  'static_pages#home'
+
+
   match '/help',            to: 'static_pages#help',          via: 'get'
   match '/map1',            to: 'static_pages#map1',          via: 'get'
   match '/map2',            to: 'static_pages#map2',          via: 'get'

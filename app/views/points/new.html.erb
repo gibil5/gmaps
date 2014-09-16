@@ -1,0 +1,52 @@
+
+<% provide(:title, 'New Point') %>
+
+<h1>New Point</h1>
+
+
+<div class="row">
+  <div class="span6 offset3">
+
+    <%#= @map.name %>, <%#= @map.file_name %>
+
+
+    <%= form_for(@point) do |f| %>
+      
+      <%= f.label :name,                  "Name" %>
+      <%= f.text_field :name %>
+      
+      <%#= f.label :map_id,              "Map id" %>
+      <%#= f.text_field :map_id %>
+
+      <%= f.label :type,              "Type" %>
+      <%= f.text_field :type %>
+
+      <%= f.label :info,                  "Info" %>
+      <%= f.text_field :info %>
+      
+      <%= f.label :lat_dec,                  "Lat decimal" %>
+      <%= f.text_field :lat_dec %>
+      
+      <%= f.label :lng_dec,                  "Long decimal" %>
+      <%= f.text_field :lng_dec %>
+      
+      <%= f.label :created_by,              "Created by" %>
+      <%= f.text_field :created_by %>
+
+      <%= f.label :last_updated_by,              "Last updated by" %>
+      <%= f.text_field :last_updated_by %>
+
+
+      <%#= f.label :,              "" %>
+      <%#= f.text_field : %>
+
+
+      <%= f.submit "Create point", class: "btn btn-large btn-primary" %>
+    <% end %>
+    
+
+  </div>
+</div>
+
+
+

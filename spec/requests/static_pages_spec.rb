@@ -35,11 +35,11 @@ subject { page }
       #it { should have_title(full_title('Maps 1'))}
     end
       
-    describe "Map 2" do
-      before { visit map2_path }
-      it { should have_content('Map 2') }
+    #describe "Map 2" do
+      #before { visit map2_path }
+      #it { should have_content('Map 2') }
       #it { should have_title(full_title('Maps 1'))}
-    end
+    #end
 
 
   end
