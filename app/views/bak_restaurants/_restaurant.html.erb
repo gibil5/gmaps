@@ -1,0 +1,27 @@
+
+
+<li>
+  <%#= gravatar_for user, size: 52 %>
+
+  <%#= link_to user.name, user %>
+  <%= link_to restaurant.name, restaurant %>
+      | 
+  <%= restaurant.info %>,
+
+  <%= restaurant.lat_dec %>,
+
+  <%= restaurant.long_dec %>
+
+  <%# if current_user.admin? && !current_user?(user) %>
+
+    | 
+      <%#= link_to "edit", restaurant, method: :edit %>
+      <%#= link_to("Answered", restaurant_path(:restaurant, :status => true), :method => :put) %>
+
+      <%= link_to 'Edit', {:action => :edit, :id => restaurant.id}, :method => :put %>
+    | <%= link_to "Delete", restaurant, method: :delete,
+        data: { confirm: "You sure?" } %>
+
+  <%# end %>
+
+</li>

@@ -1,27 +1,27 @@
 
-# jr@oblique: 16/9/14
+# jr@oblique: 18/9/14
 
 
 require 'spec_helper'
 
 
-describe "Point pages" do
+describe "Map pages" do
 
   subject { page }
 
 
 # INDEX 
-  describe "index" do
+#  describe "index" do
     
-    let(:point) { FactoryGirl.create(:point) }
+#    let(:point) { FactoryGirl.create(:point) }
     
-    before do
+#    before do
     #  sign_in user
-      visit points_path
-    end
+#      visit points_path
+#    end
 
-    it { should have_title('All points') }
-    it { should have_content('All points') }
+#    it { should have_title('All points') }
+#    it { should have_content('All points') }
 
 
 
@@ -62,7 +62,7 @@ describe "Point pages" do
 #        it { should_not have_link('delete', href: user_path(admin)) }
 #      end
 #    end
-  end
+#  end
 
 
 
@@ -78,10 +78,12 @@ describe "Point pages" do
 
 
 # CREATE - Test signup process, with Capybara 
-  describe "Creating points" do
+  describe "Creating Maps" do
 
-    before { visit new_point_path }
-    let(:submit) { "Create point" }
+    before { visit new_map_path }
+    let(:submit) { "Create map" }
+
+    #let(:point) { FactoryGirl.create(:point) }
 
 
 # invalid info
@@ -92,24 +94,26 @@ describe "Point pages" do
     end
 
 
-
 # valid info
     # with capybara 
     describe "with valid information" do
       before do
-        fill_in "Name",           with: "Raw cafe"
-        fill_in "Type",           with: "restaurant"
-        fill_in "Info",           with: "no info"
-        fill_in "Lat decimal",    with: "-12.34"
-        fill_in "Long decimal",   with: "-77.89"
-        fill_in "Created by",     with: "Justi"
-        fill_in "Last updated by",   with: "Javier"
+        fill_in "Name",               with: "Raw cafe"
+        fill_in "Map type",           with: "restaurant"
+        #fill_in "Info",           with: "no info"
+        #fill_in "Lat decimal",    with: "-12.34"
+        #fill_in "Long decimal",   with: "-77.89"
+        fill_in "Created by",         with: "Justi"
+        fill_in "Last updated by",    with: "Javier"
+        fill_in "Comments",           with: "No comments"
         #fill_in "",   with: ""
       end
 
       it "should create a point" do
-        expect { click_button submit }.to change(Point, :count).by(1)
+        expect { click_button submit }.to change(Map, :count).by(1)
       end
+
+
 
 
       # Sign in the user after sign up 
@@ -128,21 +132,51 @@ describe "Point pages" do
 
 
 
+
+
 # SHOW - Profile page 
-#  describe "profile page" do
+  describe "profile page" do
 
-#    let(:user) { 
-#    		FactoryGirl.create(:user) 
-#    }
+    #let(:user) { FactoryGirl.create(:user) }
+    let(:map) { FactoryGirl.create(:map) }
 
-#    before { 
-  		# From capybara 
-#    	visit user_path(user) 
-#    }
+    #let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    #let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
 
-#    it { should have_content(user.name) }
-#    it { should have_title(user.name) }
-#  end
+    let!(:m1) { FactoryGirl.create(:point, map: map,  name: "Foo", 
+                                                      point_type: "restaurant", info: "some info", 
+                                                      lat_dec: "-5.0", lng_dec: "-55.0",
+                                                      created_by: "javier", last_updated_by: "javier"
+                                                      )}
+    let!(:m2) { FactoryGirl.create(:point, map: map, name: "Bar",
+                                                      point_type: "restaurant", info: "some info", 
+                                                      lat_dec: "-5.0", lng_dec: "-55.0",
+                                                      created_by: "javier", last_updated_by: "javier")}
+
+
+    #before { visit user_path(user) }
+    before { visit map_path(map) }
+
+    #it { should have_content(user.name) }
+    #it { should have_title(user.name) }
+    it { should have_content(map.name) }
+    it { should have_title(map.name) }
+
+
+    #describe "microposts" do
+    describe "points" do
+      #it { should have_content(m1.content) }
+      #it { should have_content(m2.content) }
+      #it { should have_content(user.microposts.count) }
+      it { should have_content(m1.name) }
+      it { should have_content(m2.name) }
+      it { should have_content(map.points.count) }
+    end
+
+  end
+
+
+
 
 
 

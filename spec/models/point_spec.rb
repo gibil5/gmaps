@@ -10,7 +10,17 @@ describe Point do
   let(:map) { FactoryGirl.create(:map) }
 
 
-  before { @point = map.points.build(name: "Lorem ipsum") }
+  before { @point = map.points.build(
+                                      name: "Raw Cafe 1",
+                                      map_id: "1",
+                                      point_type: "restaurant",
+                                      info: "no info",
+                                      lat_dec: "-12",
+                                      lng_dec: "-77",
+                                      created_by: "Javier",
+                                      last_updated_by: "Javier"  
+                                      ) 
+          }
   # This code is not idiomatically correct.
   #before do 
   #  @point = Point.new(name: "Lorem ipsum", map_id: map.id)
@@ -26,6 +36,7 @@ describe Point do
   its(:map) { should eq map }
 
 
+# Validity 
   it { should be_valid }
 
 

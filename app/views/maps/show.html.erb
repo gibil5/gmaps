@@ -1,4 +1,37 @@
 
 
-<h1>Maps#show</h1>
-<p>Find me in app/views/maps/show.html.erb</p>
+<% provide(:title, @map.name) %>
+
+<div class="row">
+
+
+  <aside class="span4">
+    <section>
+      <h1>
+        <%#= gravatar_for @map %>
+        <%= @map.name %>
+      </h1>
+    </section>
+  </aside>
+
+
+ <div class="span8">
+
+    <% if @map.points.any? %>
+
+      <h3>Points (<%= @map.points.count %>)</h3>
+      
+      <ol class="microposts">
+        <%= render @points %>
+      </ol>
+      
+      <%= will_paginate @points %>
+
+    <% end %>
+
+</div>
+
+
+</div>
+
+

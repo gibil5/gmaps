@@ -1,0 +1,26 @@
+
+
+<% provide(:title, @restaurant.name) %>
+
+<h1>Show restaurant</h1>
+
+
+
+<div class="row">
+
+  <aside class="span4">
+
+    <section>
+
+      <h1>
+        <%#= gravatar_for @user %>
+        <%= @restaurant.name %>, 
+        <%= @restaurant.info %>, 
+        <%= @restaurant.lat_dec %>, 
+        <%= @restaurant.long_dec %>
+      </h1>
+
+    </section>
+
+  </aside>
+</div>

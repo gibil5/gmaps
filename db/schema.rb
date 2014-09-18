@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915224818) do
+ActiveRecord::Schema.define(version: 20140916155043) do
 
   create_table "maps", force: true do |t|
     t.string   "name"
@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20140915224818) do
   create_table "points", force: true do |t|
     t.string   "name"
     t.integer  "map_id"
-    t.string   "type"
     t.string   "info"
-    t.integer  "lat_dec"
-    t.integer  "lng_dec"
     t.string   "created_by"
     t.string   "last_updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "lat_dec"
+    t.string   "lng_dec"
+    t.string   "point_type"
   end
 
   add_index "points", ["map_id", "created_at"], name: "index_points_on_map_id_and_created_at"
