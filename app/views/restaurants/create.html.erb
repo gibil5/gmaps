@@ -8,10 +8,18 @@
 <div class="row">
   <div class="span6 offset3">
 
-    <%= @restaurant.name %> ,
+    <%= @restaurant.name %>, 
+
+    <%#= @restaurant.map_id %>
+    <%= @restaurant.point_type %>, 
+
     <%= @restaurant.info %>,
+
     <%= @restaurant.lat_dec %>,
-    <%= @restaurant.long_dec %>
+    <%= @restaurant.lng_dec %>,
+      
+    <%= @restaurant.created_by %>, 
+    <%= @restaurant.last_updated_by %> 
 
   </div>
 </div>

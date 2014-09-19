@@ -1,0 +1,37 @@
+
+
+<script type="text/javascript">
+
+
+
+var handler = Gmaps.build('Google');
+
+
+handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
+//    { lat: 
+//    , lng: 
+//    },
+
+
+  //var jr_pos = <%= @pos %>;
+  //var jr_pos = ('.pos_information').data('temp');
+
+
+
+  var markers = handler.addMarkers(
+
+  //<%= @pos %>
+  //('.pos_information').data('temp')  
+  //[{ lat: -12.0, lng: -77.0}]
+  gon.pos
+  );
+
+
+
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script> 
+
+
+

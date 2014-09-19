@@ -1,0 +1,28 @@
+
+
+<% provide(:title, 'Index of Maps') %>
+
+<h1>Index of Maps</h1>
+
+<%= will_paginate %>
+
+
+<ul class="users">
+  
+  <%= render @maps %>
+
+<%# @restaurants.keys.sort.each do |restaurant| %>
+    <%#= starting_letter %>
+    <%# @restaurants[starting_letter].each do |restaurant| %>
+
+    <%#= restaurant %>
+  	<%#= render @restaurant %>
+
+  <%# end %>
+<%# end %>
+
+</ul>
+
+
+<%= will_paginate %>
+

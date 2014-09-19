@@ -6,11 +6,25 @@
   <%#= link_to user.name, user %>
   <%= link_to restaurant.name, restaurant %>
       | 
-  <%= restaurant.info %>,
 
-  <%= restaurant.lat_dec %>,
+    <%#= @restaurant.map_id %>
+    <%= restaurant.point_type %>, 
 
-  <%= restaurant.long_dec %>
+    <%= restaurant.info %>,
+
+    <%= restaurant.lat_dec %>,
+    <%= restaurant.lng_dec %>,
+      
+    <%= restaurant.created_by %>, 
+    <%= restaurant.last_updated_by %> 
+
+
+
+  <%#= restaurant.info %>
+
+  <%#= restaurant.lat_dec %>
+
+  <%#= restaurant.lng_dec %>
 
   <%# if current_user.admin? && !current_user?(user) %>
 

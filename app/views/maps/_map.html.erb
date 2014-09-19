@@ -1,0 +1,41 @@
+
+
+<li>
+  <%#= gravatar_for user, size: 52 %>
+
+  <%#= link_to user.name, user %>
+  <%= link_to map.name, map %>
+      | 
+    <%#= @map.map_id %>
+
+    <%= map.map_type %>, 
+
+    <%= map.created_by %>, 
+
+    <%= map.last_updated_by %>,
+
+    <%= map.comments %>
+
+
+
+  <%#= map.info %>
+
+  <%#= map.lat_dec %>
+
+  <%#= map.lng_dec %>
+
+  <%# if current_user.admin? && !current_user?(user) %>
+
+      <%#= link_to "edit", map, method: :edit %>
+      <%#= link_to("Answered", map_path(:map, :status => true), :method => :put) %>
+
+    | <%= link_to 'Show', {:action => :show, :id => map.id}, :method => :get %>
+
+    | <%= link_to 'Edit', {:action => :edit, :id => map.id}, :method => :put %>
+
+    | <%= link_to "Delete", map, method: :delete,
+        data: { confirm: "You sure?" } %>
+
+  <%# end %>
+
+</li>

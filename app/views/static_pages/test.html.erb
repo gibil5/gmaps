@@ -1,0 +1,18 @@
+
+
+<div class="center hero-unit">
+
+  <h3>For testing</h3>
+
+
+<div class="form_row">
+    <label for="features[]">Features:</label>
+    <% [ 'scenarios', 'role_profiles', ... , 'polls' ].each do |feature| %>
+      <br><%= check_box_tag 'features[]', feature,
+              (params[:features] || {}).include?(feature) %>
+      <%= feature.humanize %>
+    <% end %>
+</div>
+
+
+</div>

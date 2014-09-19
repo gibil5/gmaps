@@ -2,14 +2,43 @@
 class RestaurantsController < ApplicationController
 
 
-  def destroy
-    Restaurant.find(params[:id]).destroy
-    flash[:success] = "User deleted."
-    redirect_to restaurants_url
+# NEW 
+  def new
+    @restaurant = Restaurant.new
   end
 
 
+      #:name
+      #:map_id
+      #:point_type
+      #:info
+      #:lat_dec
+      #:lng_dec
+      #:created_by
+      #:last_updated_by
 
+
+# CREATE
+  def create
+    @restaurant = Restaurant.new(restaurant_params)
+
+    @restaurant.point_type = 'restaurant'
+    @restaurant.info = 'no info'
+    @restaurant.created_by = 'Javier'
+    @restaurant.last_updated_by = 'Javier'
+    #@restaurant.
+    
+    if @restaurant.save
+      #sign_in @user
+      flash[:success] = "Restaurant created !"
+      #redirect_to @user
+    else
+      render 'new'
+    end
+  end
+
+
+# INDEX 
   def index
     #@restaurants = Restaurant.all
     #@restaurants = Restaurant.paginate(page: params[:page])
@@ -19,9 +48,23 @@ class RestaurantsController < ApplicationController
   end
 
 
+# EDIT
   def edit
     @restaurant = Restaurant.find(params[:id])
   end
+
+
+# DESTROY
+  def destroy
+    Restaurant.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to restaurants_url
+  end
+
+
+
+
+
 
 
   def update
@@ -36,30 +79,11 @@ class RestaurantsController < ApplicationController
   end
 
 
-
-
-
   def show
     @restaurant = Restaurant.find(params[:id])
   end
  
 
-  def new
-  	@restaurant = Restaurant.new
-  end
-
-
-  def create
-  	@restaurant = Restaurant.new(restaurant_params)
-    
-    if @restaurant.save
-      #sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      #redirect_to @user
-    else
-      render 'new'
-    end
-  end
 
 
 
@@ -67,7 +91,9 @@ class RestaurantsController < ApplicationController
   
     def restaurant_params
       #params.require(:restaurant).permit(:name, :info, :lat_dec, :long_dec)
-      params.require(:restaurant).permit(:id, :name, :info, :lat_dec, :long_dec)
+      #params.require(:restaurant).permit(:id, :name, :info, :lat_dec, :long_dec)
+      params.require(:restaurant).permit(:name, :point_type, :info, :lat_dec, :lng_dec, :created_by, :last_updated_by)
+
     end
 
 end

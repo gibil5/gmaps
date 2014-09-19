@@ -15,18 +15,35 @@
       <%= f.label :name,                  "Name" %>
       <%= f.text_field :name %>
       
-      <%= f.label :map_type,                  "Map type" %>
-      <%= f.text_field :map_type %>
+      <%#= f.label :map_type,                  "Map type" %>
+      <%#= f.text_field :map_type %>
       
-      <%= f.label :created_by,                  "Created by" %>
-      <%= f.text_field :created_by %>
+      <%#= f.label :created_by,                  "Created by" %>
+      <%#= f.text_field :created_by %>
       
-      <%= f.label :last_updated_by,                  "Last updated by" %>
-      <%= f.text_field :last_updated_by %>
+      <%#= f.label :last_updated_by,                  "Last updated by" %>
+      <%#= f.text_field :last_updated_by %>
       
-      <%= f.label :comments,                  "Comments" %>
-      <%= f.text_field :comments %>
+      <%#= f.label :comments,                  "Comments" %>
+      <%#= f.text_field :comments %>
+
       
+      <%#= f.label "Get Email" %> 
+      <%#= f.check_box :name %> 
+
+      <br />
+      <br />
+
+      Restaurants :   <%= f.check_box :map_type %><br />
+      <br />
+
+      Meditation :    <%= f.check_box :comments %><br />
+      <br />
+
+      Markets :       <%= f.check_box :created_by %><br />
+
+      <br />
+      <br />
 
 
       <%= f.submit "Create map", class: "btn btn-large btn-primary" %>

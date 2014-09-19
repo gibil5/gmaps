@@ -2,9 +2,14 @@
 
 <% provide(:title, @map.name) %>
 
-<div class="row">
 
 
+<div class="center hero-unit">
+
+  <h3>Veggie Restaurants</h3>
+
+
+<!--
   <aside class="span4">
     <section>
       <h1>
@@ -13,23 +18,62 @@
       </h1>
     </section>
   </aside>
+-->
 
-
+<!--
+<aside class="span4">
  <div class="span8">
+  
+  <div>
+    <%#= @points.first.name %>
+  </div>
+  
+  <div>
+    <%#= @points.first.as_json %>
+  </div>
 
-    <% if @map.points.any? %>
+  <div>
+    <%#= @pos %>
+  </div>
 
-      <h3>Points (<%= @map.points.count %>)</h3>
-      
-      <ol class="microposts">
-        <%= render @points %>
-      </ol>
-      
-      <%= will_paginate @points %>
 
-    <% end %>
+  <div>
+  </div>
 
 </div>
+</aside>
+-->
+
+
+<%#= content_tag :div, class: "pos_information", data: {temp: @pos} do %>
+<%# end %>
+
+
+<!--
+<aside class="span4">
+ <div class="span8">
+    <%# if @map.points.any? %>
+      <h3>Points (<%= @map.points.count %>)</h3>
+      <ol class="microposts">
+        <%#= render @points %>
+      </ol>
+      <%#= will_paginate @points %>
+    <%# end %>
+</div>
+</aside>
+-->
+
+
+
+
+<!--
+-->
+
+<div style='width: 800px;'>
+  <div id="multi_markers" style='width: 800px; height: 400px;'></div>
+</div>
+
+<%= render 'jr_script' %>
 
 
 </div>

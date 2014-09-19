@@ -20,8 +20,13 @@ Rails.application.routes.draw do
 
 
   match '/help',            to: 'static_pages#help',          via: 'get'
+
   match '/map1',            to: 'static_pages#map1',          via: 'get'
   match '/map2',            to: 'static_pages#map2',          via: 'get'
+  match '/map3',            to: 'static_pages#map3',          via: 'get'
+
+  match '/test',            to: 'static_pages#test',          via: 'get'
+
 
   #match '/restaurants/:id',  to: 'restaurants#update',        via: 'post'
   match '/restaurants/:id/edit',  to: 'restaurants#edit',   via: 'put'

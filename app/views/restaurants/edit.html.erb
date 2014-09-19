@@ -14,14 +14,25 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
 
+      <%= f.label :point_type %>
+      <%= f.text_field :point_type %>
+
       <%= f.label :info %>
       <%= f.text_field :info %>
 
       <%= f.label :lat_dec %>
       <%= f.text_field :lat_dec %>
 
-      <%= f.label :long_dec %>
-      <%= f.text_field :long_dec %>
+      <%= f.label :lng_dec %>
+      <%= f.text_field :lng_dec %>
+
+      <%= f.label :created_by %>
+      <%= f.text_field :created_by %>
+
+      <%= f.label :last_updated_by %>
+      <%= f.text_field :last_updated_by %>
+
+
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>

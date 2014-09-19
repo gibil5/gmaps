@@ -13,6 +13,7 @@ gem 'rails', '4.1.4'
 gem 'spreadsheet'
 gem 'gmaps4rails'
 #gem 'gmaps4rails', '1.5.6'
+gem 'gon' 
 
 
 # Bootstrap 
