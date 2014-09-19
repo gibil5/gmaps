@@ -5,6 +5,63 @@
 namespace :db do
 
   desc "Fill database with sample data"
+
+
+  task jr_populate: :environment do
+
+
+#:name
+#:map_id
+#:point_type
+#:info
+#:lat_dec
+#:lng_dec
+#:created_by
+#:last_updated_by
+
+    require 'spreadsheet'
+    puts 'test spreadsheet...'
+    Spreadsheet.client_encoding = 'UTF-8'
+    book = Spreadsheet.open 'app/assets/xls/restaurants.xls'
+    puts book 
+    sheet1 = book.worksheet 'Points'
+    
+    f = sheet1.row(0)
+
+    sheet1.each do |row|
+      x = 0
+      p = {}
+
+      row.each do |field|
+        p[f[x]] = row[x]
+        x += 1
+      end
+
+      name =        p['name']
+      map_id =      nil
+      point_type =  p['point_type']
+      info =        p['info']
+      lat_dec =     p['lat_dec']
+      lng_dec =     p['lng_dec']
+      created_by =  p['created_by']
+      last_updated_by = p['last_updated_by']
+
+      Restaurant.create!(  
+                          name: name,
+                          map_id: map_id,
+                          point_type: point_type, 
+                          info: info,
+                          lat_dec: lat_dec,
+                          lng_dec: lng_dec, 
+                          created_by: created_by, 
+                          last_updated_by: last_updated_by
+                          )
+
+    end
+  end
+
+
+
   task populate: :environment do
 
 
@@ -54,5 +111,10 @@ namespace :db do
 
     end
   end
+
+
+
+
+
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918225119) do
+ActiveRecord::Schema.define(version: 20140919205940) do
 
   create_table "maps", force: true do |t|
     t.string   "name"
@@ -19,6 +19,32 @@ ActiveRecord::Schema.define(version: 20140918225119) do
     t.string   "created_by"
     t.string   "last_updated_by"
     t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "markets", force: true do |t|
+    t.string   "name"
+    t.integer  "map_id"
+    t.string   "point_type"
+    t.string   "info"
+    t.string   "lat_dec"
+    t.string   "lng_dec"
+    t.string   "created_by"
+    t.string   "last_updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meditations", force: true do |t|
+    t.string   "name"
+    t.integer  "map_id"
+    t.string   "point_type"
+    t.string   "info"
+    t.string   "lat_dec"
+    t.string   "lng_dec"
+    t.string   "created_by"
+    t.string   "last_updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

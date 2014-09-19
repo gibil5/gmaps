@@ -30,49 +30,46 @@ class MapsController < ApplicationController
     @points = []
     puts @points.count
     puts 
-    if map_params['map_type'] == '1' 
+ 
+
+    pts = {}
+    
+    if map_params['map_type_res'] == '1'     
       puts 'resto type'
-      
-      #@points = Restaurant.all.as_json
-      @points << Restaurant.all.as_json    
+      pts[:restaurant] = Restaurant.where("point_type = 'restaurant'").as_json
     end
-    puts @points.count
-    puts 
-    
 
-    if map_params['created_by'] == '1' 
-      puts 'meditation type'
-      
-      @points << Meditation.all.as_json    
-    end
-    puts @points.count
-    puts 
-    
-
-    if map_params['comments'] == '1' 
+    if map_params['map_type_med'] == '1' 
+      puts 'meditation type'      
+      pts[:meditation] = Restaurant.where("point_type = 'meditation'").as_json
+   end
+   
+   if map_params['map_type_mar'] == '1' 
       puts 'markets type'
-      @points << Market.all.as_json    
-    end
+      pts[:market] = Restaurant.where("point_type = 'market'").as_json
+   end
+
+    @points = pts[:restaurant] + pts[:meditation] + pts[:market]
 
     puts @points.count
     puts 
 
     #@points = Restaurant.where("point_type = 'restaurant'").as_json
     
-    #if @map.save
-    #  flash[:success] = "Map created"
+    if @map.save
+      flash[:success] = "Map created"
       
-    #  @points.each do |p|
-    #    p["id"] = nil 
+      @points.each do |p|
+        p["id"] = nil 
         #puts p["id"]
         #puts p
         #puts
-    #    @map.points.create!(p)
+        @map.points.create!(p)
         #puts
-    #  end 
-    #else
-    #  render 'new'
-    #end
+      end 
+    else
+      render 'new'
+    end
 
   end
 
@@ -112,12 +109,44 @@ class MapsController < ApplicationController
 
     pos_arr = []
 
+
+
+    #img_res = "/assets/restaurant_vegetarian_green_1.png"
+    #img_med = "/assets/meditation_blue_1.png"  
+    #img_mar = "/assets/market_yellow_1.png"  
+
+    img_h = {
+              "restaurant" => "/assets/restaurant_vegetarian_green_1.png",
+              "meditation" =>  "/assets/meditation_blue_1.png",
+              "market" => "/assets/market_yellow_1.png"  
+            }
+
     positions.each do |p| 
       pos = {}
       pos["lat"] = p["lat_dec"]
       pos["lng"] = p["lng_dec"]
       pos["name"] = p["name"]
       pos["infowindow"] = p["name"]
+
+      #if p["point_type"] == 'restaurant'
+      #  img = img_res
+      #end
+      #if p["point_type"] == 'meditation'
+      #  img = img_med
+      #end
+      #if p["point_type"] == 'market'
+      #  img = img_mar
+      #end
+
+      img = img_h[p["point_type"]]
+
+      pos["picture"] = {
+        #{}"url" => "/assets/restaurant_vegetarian_green_1.png",
+        "url" => img,
+        "width" =>  36,
+        "height"=> 36
+      }
+
       #name: 'Foo', 
       #infowindow: "I'm Foo"
       pos_arr << pos 
@@ -140,7 +169,8 @@ class MapsController < ApplicationController
 
     def map_params
       #params.require(:map).permit(:name, :info, :lat_dec, :long_dec)
-      params.require(:map).permit(:name, :map_type, :created_by, :last_updated_by, :comments)
+      #params.require(:map).permit(:name, :map_type, :created_by, :last_updated_by, :comments)
+      params.require(:map).permit(:name, :map_type, :created_by, :last_updated_by, :comments, :map_type_res, :map_type_mar, :map_type_med)
     end
 
 

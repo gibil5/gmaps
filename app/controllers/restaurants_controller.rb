@@ -7,29 +7,25 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new
   end
 
-
-      #:name
-      #:map_id
-      #:point_type
-      #:info
-      #:lat_dec
-      #:lng_dec
-      #:created_by
-      #:last_updated_by
+#:name
+#:map_id
+#:point_type
+#:info
+#:lat_dec
+#:lng_dec
+#:created_by
+#:last_updated_by
 
 
 # CREATE
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
-    @restaurant.point_type = 'restaurant'
     @restaurant.info = 'no info'
     @restaurant.created_by = 'Javier'
     @restaurant.last_updated_by = 'Javier'
-    #@restaurant.
-    
+
     if @restaurant.save
-      #sign_in @user
       flash[:success] = "Restaurant created !"
       #redirect_to @user
     else
