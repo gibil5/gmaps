@@ -8,18 +8,29 @@
 
 
 <ul class="users">
+
+<!--
+<table border="1" style="width:100%">
+-->
+
+<table style="width:100%">
+
+  <tr>
+    <th>Name</th>
+    <th>Id</th>
+    <th>Type</th>
+    <th>Created by</th>
+    <th>Last updated by</th>
+    <th>Comments</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   
   <%= render @maps %>
 
-<%# @restaurants.keys.sort.each do |restaurant| %>
-    <%#= starting_letter %>
-    <%# @restaurants[starting_letter].each do |restaurant| %>
+</table> 
 
-    <%#= restaurant %>
-  	<%#= render @restaurant %>
-
-  <%# end %>
-<%# end %>
 
 </ul>
 

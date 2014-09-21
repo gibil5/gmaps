@@ -1,41 +1,44 @@
 
-
-<li>
+<tr>
+  
   <%#= gravatar_for user, size: 52 %>
 
-  <%#= link_to user.name, user %>
-  <%= link_to restaurant.name, restaurant %>
-      | 
+  <td>
+    <%= link_to restaurant.name, restaurant %>
+  </td>
 
-    <%#= @restaurant.map_id %>
-    <%= restaurant.point_type %>, 
+  <td>
+    <%= restaurant.point_type %>
+  </td>
+       
+  <td>
+    <%= restaurant.info %>
+  </td>
 
-    <%= restaurant.info %>,
+  <td>
+    <%= restaurant.lat_dec %>
+  </td>
 
-    <%= restaurant.lat_dec %>,
-    <%= restaurant.lng_dec %>,
-      
-    <%= restaurant.created_by %>, 
+  <td>
+    <%= restaurant.lng_dec %>
+  </td>
+
+  <td>
+    <%= restaurant.created_by %> 
+  </td>
+
+  <td>
     <%= restaurant.last_updated_by %> 
+  </td>
 
-
-
-  <%#= restaurant.info %>
-
-  <%#= restaurant.lat_dec %>
-
-  <%#= restaurant.lng_dec %>
-
-  <%# if current_user.admin? && !current_user?(user) %>
-
-    | 
-      <%#= link_to "edit", restaurant, method: :edit %>
-      <%#= link_to("Answered", restaurant_path(:restaurant, :status => true), :method => :put) %>
-
+  <td>
       <%= link_to 'Edit', {:action => :edit, :id => restaurant.id}, :method => :put %>
-    | <%= link_to "Delete", restaurant, method: :delete,
+  </td>
+
+  <td>
+      <%= link_to "Delete", restaurant, method: :delete,
         data: { confirm: "You sure?" } %>
+  </td>
 
-  <%# end %>
-
-</li>
+</tr>
+  

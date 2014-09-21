@@ -34,20 +34,24 @@ class RestaurantsController < ApplicationController
   end
 
 
+
 # INDEX 
   def index
     #@restaurants = Restaurant.all
     #@restaurants = Restaurant.paginate(page: params[:page])
     #@restaurants = Restaurant.all.group_by{|u| u.name}
 
-    @restaurants = Restaurant.order(:name).paginate(page: params[:page])
+    #@restaurants = Restaurant.order(:name).paginate(page: params[:page])
+    @restaurants = Restaurant.order(:point_type).order(:name).paginate(page: params[:page])
   end
+
 
 
 # EDIT
   def edit
     @restaurant = Restaurant.find(params[:id])
   end
+
 
 
 # DESTROY

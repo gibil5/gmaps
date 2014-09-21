@@ -1,15 +1,6 @@
 
 # jr@oblique: 18/9/14
 
-
-namespace :db do
-
-  desc "Fill database with sample data"
-
-
-  task jr_populate: :environment do
-
-
 #:name
 #:map_id
 #:point_type
@@ -19,14 +10,30 @@ namespace :db do
 #:created_by
 #:last_updated_by
 
+
+
+namespace :db do
+
     require 'spreadsheet'
+
+  desc "Fill database with sample data"
+
+
+  task jr_res_populate: :environment do
+
     puts 'test spreadsheet...'
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet.open 'app/assets/xls/restaurants.xls'
     puts book 
-    sheet1 = book.worksheet 'Points'
     
+    sheet_name = ENV['SNAME']
+
+    #sheet1 = book.worksheet 'Restaurant'    
+    sheet1 = book.worksheet sheet_name
+    puts sheet_name    
+
     f = sheet1.row(0)
+    ctr = 0
 
     sheet1.each do |row|
       x = 0
@@ -46,7 +53,8 @@ namespace :db do
       created_by =  p['created_by']
       last_updated_by = p['last_updated_by']
 
-      Restaurant.create!(  
+      if (ctr > 0) and ( (lat_dec != 'na') and (lng_dec != 'na') ) 
+        Restaurant.create!(  
                           name: name,
                           map_id: map_id,
                           point_type: point_type, 
@@ -56,6 +64,9 @@ namespace :db do
                           created_by: created_by, 
                           last_updated_by: last_updated_by
                           )
+      end
+      ctr += 1
+
 
     end
   end

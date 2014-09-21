@@ -10,6 +10,7 @@ describe "Map pages" do
   subject { page }
 
 
+
 # INDEX 
 #  describe "index" do
     
@@ -87,11 +88,11 @@ describe "Map pages" do
 
 
 # invalid info
-    describe "with invalid information" do
-      it "should not create a user" do
-        expect { click_button submit }.not_to change(Point, :count)
-      end
-    end
+#    describe "with invalid information" do
+#      it "should not create a user" do
+#        expect { click_button submit }.not_to change(Point, :count)
+#      end
+#    end
 
 
 # valid info
@@ -99,14 +100,16 @@ describe "Map pages" do
     describe "with valid information" do
       before do
         fill_in "Name",               with: "Raw cafe"
-        fill_in "Map type",           with: "restaurant"
+        
+        uncheck 'Restaurants'
+        check 'Meditation'
+        uncheck 'Markets'
+
+        #fill_in "Map type",           with: "restaurant"
         #fill_in "Info",           with: "no info"
-        #fill_in "Lat decimal",    with: "-12.34"
-        #fill_in "Long decimal",   with: "-77.89"
-        fill_in "Created by",         with: "Justi"
-        fill_in "Last updated by",    with: "Javier"
-        fill_in "Comments",           with: "No comments"
-        #fill_in "",   with: ""
+        #fill_in "Created by",         with: "Justi"
+        #fill_in "Last updated by",    with: "Javier"
+        #fill_in "Comments",           with: "No comments"
       end
 
       it "should create a point" do
@@ -136,6 +139,8 @@ describe "Map pages" do
 
 # SHOW - Profile page 
   describe "profile page" do
+
+    pending do 
 
     #let(:user) { FactoryGirl.create(:user) }
     let(:map) { FactoryGirl.create(:map) }
@@ -173,6 +178,8 @@ describe "Map pages" do
       it { should have_content(map.points.count) }
     end
 
+
+  end
   end
 
 

@@ -1,25 +1,32 @@
 
 
-<% provide(:title, 'Index of Restaurants') %>
+<% provide(:title, 'Index of Places') %>
 
-<h1>Index of Restaurants</h1>
+<h1>Places in Lima</h1>
 
 <%= will_paginate %>
 
 
 <ul class="users">
-  
+
+  <table style="width:100%">
+
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Info</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th>Created</th>
+    <th>Last updated</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
   <%= render @restaurants %>
 
-<%# @restaurants.keys.sort.each do |restaurant| %>
-    <%#= starting_letter %>
-    <%# @restaurants[starting_letter].each do |restaurant| %>
-
-    <%#= restaurant %>
-  	<%#= render @restaurant %>
-
-  <%# end %>
-<%# end %>
+  </table> 
 
 </ul>
 

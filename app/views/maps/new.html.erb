@@ -34,17 +34,17 @@
       <br />
       <br />
 
-      Restaurants :   <%= f.check_box :map_type_res %><br />
-      <br />
+<!--
+      Restaurants   <%#= f.check_box  :map_type_res,  {:name => 'Restaurants'} %><br />  <br />
+      Meditation    <%#= f.check_box :map_type_med ,  {:name => 'Meditation'} %><br />   <br />
+      Markets       <%#= f.check_box :map_type_mar,   {:name => 'Markets'} %><br />      <br />
+-->
 
-      Meditation :    <%= f.check_box :map_type_med %><br />
-      <br />
+      Restaurants   <%= f.check_box  :map_type_res   %>    <br />  <br />
+      Meditation    <%= f.check_box :map_type_med    %>    <br />   <br />
+      Markets       <%= f.check_box :map_type_mar   %>    <br />      <br />
 
-      Markets :       <%= f.check_box :map_type_mar %><br />
-
       <br />
-      <br />
-
 
       <%= f.submit "Create map", class: "btn btn-large btn-primary" %>
     <% end %>

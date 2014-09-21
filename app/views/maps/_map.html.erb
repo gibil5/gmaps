@@ -1,41 +1,67 @@
 
-
+<!--
 <li>
+-->
   <%#= gravatar_for user, size: 52 %>
 
-  <%#= link_to user.name, user %>
-  <%= link_to map.name, map %>
-      | 
+    <%#= link_to map.name, map %>
+       
     <%#= @map.map_id %>
 
-    <%= map.map_type %>, 
+    <%#= map.map_type %> 
 
-    <%= map.created_by %>, 
+    <%#= map.created_by %>
 
-    <%= map.last_updated_by %>,
+    <%#= map.last_updated_by %>
 
-    <%= map.comments %>
+    <%#= map.comments %>
 
 
+<%# @employee.position.skills.zip(@employee.position.expected_qualifications,@employee.current_qualifications).each |skill expected_qualification current_qualification| %>
+<tr>
+
+  <td>
+    <%#= map.name %>
+    <%= link_to map.name, map %>
+  </td>
+  
+  <td><%= map.id %></td>
+  
+  <td><%= map.map_type %></td>
+
+  <td><%= map.created_by %></td>
+  
+  <td><%= map.last_updated_by %></td>
+  
+  <td><%= map.comments %></td>
+
+  <td>
+    | <%= link_to 'Show', {:action => :show, :id => map.id}, :method => :get %>
+  </td>
+
+  <td>
+     <%= link_to 'Edit', {:action => :edit, :id => map.id}, :method => :put %>
+  </td>
+
+  <td>
+     <%= link_to "Delete", map, method: :delete,
+        data: { confirm: "You sure?" } %>
+  </td>
+
+</tr>
+<%# end %>
 
   <%#= map.info %>
 
-  <%#= map.lat_dec %>
 
-  <%#= map.lng_dec %>
 
-  <%# if current_user.admin? && !current_user?(user) %>
+<!--
+    | <%#= link_to 'Show', {:action => :show, :id => map.id}, :method => :get %>
 
-      <%#= link_to "edit", map, method: :edit %>
-      <%#= link_to("Answered", map_path(:map, :status => true), :method => :put) %>
+    | <%#= link_to 'Edit', {:action => :edit, :id => map.id}, :method => :put %>
 
-    | <%= link_to 'Show', {:action => :show, :id => map.id}, :method => :get %>
-
-    | <%= link_to 'Edit', {:action => :edit, :id => map.id}, :method => :put %>
-
-    | <%= link_to "Delete", map, method: :delete,
+    | <%#= link_to "Delete", map, method: :delete,
         data: { confirm: "You sure?" } %>
 
-  <%# end %>
-
 </li>
+-->

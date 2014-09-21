@@ -1,5 +1,5 @@
 
-# jr@oblique:  16/9/14
+# jr@oblique:  21/9/14
 
 
 class MapsController < ApplicationController
@@ -19,52 +19,74 @@ class MapsController < ApplicationController
 
 # CREATE 
   def create
-    puts 'jx: create'
+    puts
+    puts 'jx : CREATE'
     #puts map_params
     puts
 
   	@map = Map.new(map_params)
-    #@points = Point.find_by(map_type: "restaurants")
     
+    map_type = 0
+    created_by = 'Justino'
+    last_updated_by = 'Javier'
+    comments = 'no comments'
+
 
     @points = []
+    puts 'points.count'
     puts @points.count
     puts 
  
-
     pts = {}
-    
-    if map_params['map_type_res'] == '1'     
-      puts 'resto type'
-      pts[:restaurant] = Restaurant.where("point_type = 'restaurant'").as_json
+
+
+    if map_params['map_type_mar'] == '1' 
+      puts 'markets type'
+      #@points = Restaurant.find_by(map_type: "restaurants")
+      pts[:market] = Restaurant.where("point_type = 'market'").as_json
+
+      @points = @points + pts[:market] 
+      map_type = map_type +1
     end
 
     if map_params['map_type_med'] == '1' 
       puts 'meditation type'      
       pts[:meditation] = Restaurant.where("point_type = 'meditation'").as_json
-   end
+
+      @points = @points + pts[:meditation] 
+      map_type = map_type +10
+    end
+
+    if map_params['map_type_res'] == '1'     
+      puts 'resto type'
+      pts[:restaurant] = Restaurant.where("point_type = 'restaurant'").as_json
+
+      @points = @points + pts[:restaurant] 
+      map_type = map_type +100
+    end
+
+
+    @map.map_type = map_type
+    @map.created_by = created_by
+    @map.last_updated_by = last_updated_by
+    @map.comments = comments
+
    
-   if map_params['map_type_mar'] == '1' 
-      puts 'markets type'
-      pts[:market] = Restaurant.where("point_type = 'market'").as_json
-   end
 
-    @points = pts[:restaurant] + pts[:meditation] + pts[:market]
+    #@points = pts[:restaurant] + pts[:meditation] + pts[:market]
 
+    puts 'points.count'
     puts @points.count
     puts 
 
-    #@points = Restaurant.where("point_type = 'restaurant'").as_json
     
     if @map.save
       flash[:success] = "Map created"
       
       @points.each do |p|
         p["id"] = nil 
-        #puts p["id"]
-        #puts p
-        #puts
         @map.points.create!(p)
+        #puts p
         #puts
       end 
     else
@@ -81,28 +103,25 @@ class MapsController < ApplicationController
     #@points = point.all
     #@points = point.paginate(page: params[:page])
     #@points = point.all.group_by{|u| u.name}
-    @maps = Map.order(:name).paginate(page: params[:page])
+
+    #@maps = Map.order(:name).paginate(page: params[:page])
+    @maps = Map.paginate(page: params[:page])
   end
 
 
 
-# DESTROY
-  def destroy
-    Map.find(params[:id]).destroy
-    flash[:success] = "Map deleted."
-    redirect_to maps_url
-  end
 
 
 
 
 # SHOW
   def show
-
-    puts 'jx : create'
+    puts
+    puts 'jx : SHOW'
 
     @map = Map.find(params[:id])
     #@microposts = @user.microposts.paginate(page: params[:page])
+
     @points = @map.points.paginate(page: params[:page])
 
     positions = @map.points.as_json
@@ -116,11 +135,13 @@ class MapsController < ApplicationController
     #img_mar = "/assets/market_yellow_1.png"  
 
     img_h = {
-              "restaurant" => "/assets/restaurant_vegetarian_green_1.png",
+              "restaurant" =>  "/assets/restaurant_vegetarian_green_1.png",
               "meditation" =>  "/assets/meditation_blue_1.png",
-              "market" => "/assets/market_yellow_1.png"  
+              "market" =>      "/assets/market_yellow_1.png"  
             }
 
+    width = 36
+    height = 36
     positions.each do |p| 
       pos = {}
       pos["lat"] = p["lat_dec"]
@@ -143,8 +164,8 @@ class MapsController < ApplicationController
       pos["picture"] = {
         #{}"url" => "/assets/restaurant_vegetarian_green_1.png",
         "url" => img,
-        "width" =>  36,
-        "height"=> 36
+        "width" =>  width,
+        "height"=> height
       }
 
       #name: 'Foo', 
@@ -152,7 +173,11 @@ class MapsController < ApplicationController
       pos_arr << pos 
     end
 
+
     gon.pos = pos_arr
+    puts 'MARK: pos_arr'
+    puts pos_arr
+
 
     #[ 
     #  { lat: -12.0, lng: -77.0},
@@ -163,6 +188,12 @@ class MapsController < ApplicationController
 
 
 
+# DESTROY
+  def destroy
+    Map.find(params[:id]).destroy
+    flash[:success] = "Map deleted."
+    redirect_to maps_url
+  end
 
 
  private
