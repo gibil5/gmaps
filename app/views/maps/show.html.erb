@@ -3,12 +3,14 @@
 <% provide(:title, @map.name) %>
 
 
-
 <div class="center hero-unit">
 
 <!--
-  <h3>Places in Lima</h3>
 -->
+  <h3>Places in Lima</h3>
+
+
+</div>
 
 
     <%#= @points.first.as_json %>
@@ -24,70 +26,47 @@
   </aside>
 -->
 
+
+
 <!--
-<aside class="span4">
- <div class="span8">
-  
-  <div>
-    <%#= @points.first.name %>
-  </div>
-  
-  <div>
-    <%#= @points.first.as_json %>
-  </div>
-
-  <div>
-    <%#= @pos %>
-  </div>
-
-
-  <div>
-  </div>
-
-</div>
-</aside>
+Map
 -->
-
-
-<%#= content_tag :div, class: "pos_information", data: {temp: @pos} do %>
-<%# end %>
-
-
-
-
+<%#= render 'jr_draw_map' %>
 
 
 <!--
--->
-
-<div style='width: 800px;'>
-  <div id="multi_markers" style='width: 800px; height: 400px;'></div>
-</div>
-
-<%= render 'jr_script' %>
-
-
-
-<!--
-      <ol class="microposts">
 -->
 <aside class="span4">
  <div class="span8">
+
+
     <% if @map.points.any? %>
       
-      <h3>Points (<%= @map.points.count %>)</h3>
+
+      <% if @points_m.any? %>
+        <h3>Meditation (<%= @points_m.count %>)</h3>
+          <ol class="microposts">
+            <%#= render @points_r %>
+            <%= render @points_m %>
+          </ol>
+      <% end %>
+
+
+      <% if @points_r.any? %>
+        <h3>Restaurants (<%= @points_r.count %>)</h3>
+          <ol class="microposts">
+            <%= render @points_r %>
+            <%#= render @points_m %>
+          </ol>
+      <% end %>
       
-      <ol class="microposts">
-        <%= render @points %>
-      </ol>
-      
-      <%= will_paginate @points %>
+      <%#= will_paginate @points %>
     <% end %>
+
 </div>
 </aside>
 
 
 
-</div>
 
 

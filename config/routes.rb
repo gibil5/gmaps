@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
 
   match '/help',            to: 'static_pages#help',          via: 'get'
-
   match '/map1',            to: 'static_pages#map1',          via: 'get'
   match '/map2',            to: 'static_pages#map2',          via: 'get'
   match '/map3',            to: 'static_pages#map3',          via: 'get'
@@ -30,6 +29,9 @@ Rails.application.routes.draw do
 
   #match '/restaurants/:id',  to: 'restaurants#update',        via: 'post'
   match '/restaurants/:id/edit',  to: 'restaurants#edit',   via: 'put'
+
+  match '/maps/1',  to: 'maps#show',   via: 'put'
+
 
 
 #  match '/restaurants', to: 'restaurants#new',            via: 'get'

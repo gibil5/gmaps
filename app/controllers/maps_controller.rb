@@ -122,17 +122,25 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
     #@microposts = @user.microposts.paginate(page: params[:page])
 
-    @points = @map.points.paginate(page: params[:page])
+    @points = @map.points.paginate(page: params[:page]).order(:name)
+
+# Separate 
+    #x_pos = @map.points.as_json
+    x_pos = @map.points.order(:name)
+
+    @x_restaurant = x_pos.select{ |item| item["point_type"] == "restaurant" }.sort{|a,b| a['name']<=>b['name']}
+
+    @x_meditation = x_pos.select{ |item| item["point_type"] == "meditation" }.sort{|a,b| a['name']<=>b['name']}
+
+    
+    @points_r = @x_restaurant
+    @points_m = @x_meditation
+
+
 
     positions = @map.points.as_json
 
     pos_arr = []
-
-
-
-    #img_res = "/assets/restaurant_vegetarian_green_1.png"
-    #img_med = "/assets/meditation_blue_1.png"  
-    #img_mar = "/assets/market_yellow_1.png"  
 
     img_h = {
               "restaurant" =>  "/assets/restaurant_vegetarian_green_1.png",
@@ -149,15 +157,6 @@ class MapsController < ApplicationController
       pos["name"] = p["name"]
       pos["infowindow"] = p["name"]
 
-      #if p["point_type"] == 'restaurant'
-      #  img = img_res
-      #end
-      #if p["point_type"] == 'meditation'
-      #  img = img_med
-      #end
-      #if p["point_type"] == 'market'
-      #  img = img_mar
-      #end
 
       img = img_h[p["point_type"]]
 
@@ -168,8 +167,6 @@ class MapsController < ApplicationController
         "height"=> height
       }
 
-      #name: 'Foo', 
-      #infowindow: "I'm Foo"
       pos_arr << pos 
     end
 
@@ -178,12 +175,6 @@ class MapsController < ApplicationController
     puts 'MARK: pos_arr'
     puts pos_arr
 
-
-    #[ 
-    #  { lat: -12.0, lng: -77.0},
-    #  { lat: -12.1, lng: -77.6},
-    #  { lat: -12.3, lng: -77.1}
-    #]
   end
 
 
