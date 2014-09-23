@@ -1,27 +1,20 @@
 
-# jr@oblique: 18/9/14
-
-#:name
-#:map_id
-#:point_type
-#:info
-#:lat_dec
-#:lng_dec
-#:created_by
-#:last_updated_by
-
+# jr@oblique: 22/9/14
 
 
 namespace :db do
 
-    require 'spreadsheet'
+  require 'spreadsheet'
 
   desc "Fill database with sample data"
 
 
+    # bundle exec rake db:jr_res_populate  SNAME=Restaurant
+    # bundle exec rake db:jr_res_populate  SNAME=Meditation
+
   task jr_res_populate: :environment do
 
-    puts 'test spreadsheet...'
+    puts 'Reading spreadsheet...'
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet.open 'app/assets/xls/restaurants.xls'
     puts book 
@@ -44,25 +37,58 @@ namespace :db do
         x += 1
       end
 
-      name =        p['name']
       map_id =      nil
-      point_type =  p['point_type']
-      info =        p['info']
-      lat_dec =     p['lat_dec']
-      lng_dec =     p['lng_dec']
-      created_by =  p['created_by']
+
+      point_type =      p['point_type']
+      point_subtype =      p['point_subtype']
+
+      name =            p['name']
+      lat_dec =         p['lat_dec']
+      lng_dec =         p['lng_dec']
+      info =            p['info']
+      created_by =      p['created_by']
       last_updated_by = p['last_updated_by']
+      ad_number =       p['ad_number']
+      ad_street =       p['ad_street']
+      ad_district =     p['ad_district']
+      ad_phone_1 =      p['ad_phone_1']
+      ad_phone_2 =      p['ad_phone_2']
+      ad_reference =    p['ad_reference']
+      open_hours =      p['open_hours']
+      email =           p['email']
+      www =             p['www']
+      facebook =        p['facebook']
+      twitter =         p['twitter']
+      
+      # =        p['']
+
+
 
       if (ctr > 0) and ( (lat_dec != 'na') and (lng_dec != 'na') ) 
         Restaurant.create!(  
-                          name: name,
                           map_id: map_id,
-                          point_type: point_type, 
-                          info: info,
-                          lat_dec: lat_dec,
-                          lng_dec: lng_dec, 
-                          created_by: created_by, 
-                          last_updated_by: last_updated_by
+
+                          point_type:     point_type,
+                          point_subtype:  point_subtype,
+
+                          name:           name,
+                          lat_dec:        lat_dec,
+                          lng_dec:        lng_dec, 
+                          info:           info,
+                          created_by:     created_by, 
+                          last_updated_by: last_updated_by,
+
+                          ad_number:      ad_number,
+                          ad_street:      ad_street,
+                          ad_district:    ad_district,
+                          ad_phone_1:     ad_phone_1,
+                          ad_phone_2:     ad_phone_2,
+                          ad_reference:   ad_reference,
+                          open_hours:     open_hours,
+                          email:          email,
+                          www:            www,
+                          facebook:       facebook,
+                          twitter:        twitter
                           )
       end
       ctr += 1
