@@ -2,15 +2,15 @@
 
 <% provide(:title, @map.name) %>
 
+<div>
 
 <div class="center hero-unit">
 
 <!--
--->
   <h3>Places in Lima</h3>
+-->
 
 
-</div>
 
 
     <%#= @points.first.as_json %>
@@ -31,7 +31,8 @@
 <!--
 Map
 -->
-<%#= render 'jr_draw_map' %>
+<%= render 'jr_draw_map' %>
+</div>
 
 
 <!--
@@ -66,6 +67,7 @@ Map
 </div>
 </aside>
 
+</div>
 
 
 

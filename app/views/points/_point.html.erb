@@ -6,7 +6,60 @@
   <span class="content"><%= point.name %> </span>
 -->
   <%= link_to point.name, point %>
-|
+  |
+  <%= point.ad_number %>,
+
+  <%= point.ad_street %> - 
+
+  <%= point.ad_district %>. 
+
+
+  <% if (point.ad_phone_1 != nil) %>
+  	Tel:  
+	<%= point.ad_phone_1 %>
+
+  	<% if (point.ad_phone_2 != nil) %>
+		, 
+  		<%= point.ad_phone_2 %>
+  	<% end %>
+  	.
+  <% end %>
+
+
+  <% if point.ad_reference != nil %>
+  	<span class="content">  
+  		Referencia: <%= point.ad_reference %>. 
+  	</span>  
+  <% end %>
+
+  <% if point.open_hours != nil %>
+	<span class="content">  
+  		Horarios: <%= point.open_hours %>. 
+  	</span>  
+  <% end %>
+
+
+  <% if point.email != nil %>
+  	<span class="content">  
+  		Email: <%= point.email %> 
+  	</span>  
+  <% end %>
+
+
+  <span class="content">  
+  	<% if point.www != nil %>
+  		<%= link_to "www",      point.www  %>
+  	<% end %>
+  <% if point.facebook != nil %>
+  		
+  		<%= link_to "FB",      point.facebook  %>
+  <% end %>
+  </span>  
+
+
+
+  <%#= point. %> 
+
 
 <!--
   <span class="timestamp">
