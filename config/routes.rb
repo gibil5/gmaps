@@ -1,5 +1,5 @@
 
-# jr@oblique:  10/9/14
+# jr@oblique:  24/9/14
 
 
 Rails.application.routes.draw do
@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resources :restaurants
   resources :maps
   resources :points
+
+  resources :microposts, only: [:create, :destroy]
+
+
 
 #         url           controller action                 http request 
   root  'static_pages#home'
