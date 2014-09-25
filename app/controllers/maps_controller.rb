@@ -119,7 +119,36 @@ class MapsController < ApplicationController
     puts
     puts 'jx : SHOW'
 
+
+# Microcomment
+    #@micropost = current_user.microposts.build if signed_in?
+    @microcomment = Microcomment.new
+
+    #@feed_items = current_user.feed.paginate(page: params[:page])
+    #@feed_items = Microcomment.where("owner = 'javier' ")
+    #@feed_items = Microcomment.where("owner = 'javier' ")
+    @feed_items = Microcomment.all
+
+
+
+
+
+
+# Map
     @map = Map.find(params[:id])
+    
+    if Currentmap.count ==0
+      c = Currentmap.new(id_curr: 0)
+      c.save 
+    end
+    current_map = Currentmap.first
+    current_map.id_curr = @map.id
+    current_map.save 
+
+
+
+
+
     #@microposts = @user.microposts.paginate(page: params[:page])
 
     @points = @map.points.paginate(page: params[:page]).order(:name)

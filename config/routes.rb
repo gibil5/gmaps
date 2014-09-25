@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :maps
   resources :points
 
-  resources :microposts, only: [:create, :destroy]
+  resources :microcomments, only: [:create, :destroy]
 
 
 

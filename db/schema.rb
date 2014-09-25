@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923171540) do
+ActiveRecord::Schema.define(version: 20140925001013) do
+
+  create_table "currentmaps", force: true do |t|
+    t.string   "id_curr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "maps", force: true do |t|
     t.string   "name"
@@ -19,6 +25,13 @@ ActiveRecord::Schema.define(version: 20140923171540) do
     t.string   "created_by"
     t.string   "last_updated_by"
     t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "microcomments", force: true do |t|
+    t.string   "content"
+    t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

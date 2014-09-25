@@ -35,15 +35,52 @@ Map
 </div>
 
 
+
+<!--
+Microcomments
+-->
+  <div class="row">
+
+<!--
+    <aside class="span4">
+    <aside>
+    <aside style="font-size:larger;font-style:italic;color:green;float:right;width:35%;padding-left:5px;">  
+-->
+    <aside style="float:right;width:35%;padding-left:5px;">  
 <!--
 -->
-<aside class="span4">
- <div class="span8">
+      <section>
+        <%#= render 'shared/user_info' %>
+        <h3>
+            Feedback box
+        </h3>
 
+      </section>
+
+      <section>
+        <%= render 'shared/microcomment_form' %>
+      </section>
+
+    
+<!--
+      <div class="span8">
+-->
+      <div>
+<!--
+        <h3>Microcomment Feed</h3>
+-->
+          <%= render 'shared/feed' %>
+      </div>
+
+    </aside>
+
+
+<!--
+    <div>
+-->
+    <div class="span7">
 
     <% if @map.points.any? %>
-      
-
       <% if @points_m.any? %>
         <h3>Meditation (<%= @points_m.count %>)</h3>
           <ol class="microposts">
@@ -51,8 +88,6 @@ Map
             <%= render @points_m %>
           </ol>
       <% end %>
-
-
       <% if @points_r.any? %>
         <h3>Restaurants (<%= @points_r.count %>)</h3>
           <ol class="microposts">
@@ -60,12 +95,22 @@ Map
             <%#= render @points_m %>
           </ol>
       <% end %>
-      
       <%#= will_paginate @points %>
     <% end %>
+    </div>
 
-</div>
-</aside>
+
+  </div>
+
+
+
+
+<!--
+List
+-->
+
+<!--
+-->
 
 </div>
 
