@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   #get 'maps/create'
   #get 'maps/show'
 
+  #resources :restaurants
   resources :restaurants
   resources :maps
   resources :points
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
 #         url           controller action                 http request 
   root  'static_pages#home'
 
+  #match '/restaurants',      to: 'restaurants#index',           via: 'get'
 
   match '/help',            to: 'static_pages#help',          via: 'get'
   match '/map1',            to: 'static_pages#map1',          via: 'get'
@@ -32,7 +34,7 @@ Rails.application.routes.draw do
 
 
   #match '/restaurants/:id',  to: 'restaurants#update',        via: 'post'
-  match '/restaurants/:id/edit',  to: 'restaurants#edit',   via: 'put'
+  #match '/restaurants/:id/edit',  to: 'restaurants#edit',   via: 'put'
 
   match '/maps/1',  to: 'maps#show',   via: 'put'
 

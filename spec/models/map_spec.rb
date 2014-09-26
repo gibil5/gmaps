@@ -42,28 +42,28 @@ describe Map do
     before { @map.save }
 
 
-    let!(:older_point) do
-      FactoryGirl.create(:point, map: @map, created_at: 1.day.ago)
-    end
+    #let!(:older_point) do
+    #  FactoryGirl.create(:point, map: @map, created_at: 1.day.ago)
+    #end
 
-    let!(:newer_point) do
-      FactoryGirl.create(:point, map: @map, created_at: 1.hour.ago)
-    end
+    #let!(:newer_point) do
+    #  FactoryGirl.create(:point, map: @map, created_at: 1.hour.ago)
+    #end
 
-    it "should have the right points in the right order" do
-      expect(@map.points.to_a).to eq [newer_point, older_point]
-    end
+    #it "should have the right points in the right order" do
+    #  expect(@map.points.to_a).to eq [newer_point, older_point]
+    #end
 
 
 
-    it "should destroy associated points" do
-      points = @map.points.to_a
-      @map.destroy
-      expect(points).not_to be_empty
-      points.each do |point|
-        expect(Point.where(id: point.id)).to be_empty
-      end
-    end
+    #it "should destroy associated points" do
+    #  points = @map.points.to_a
+    #  @map.destroy
+    #  expect(points).not_to be_empty
+    #  points.each do |point|
+    #    expect(Point.where(id: point.id)).to be_empty
+    #  end
+    #end
     
   end
 end

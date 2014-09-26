@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925001013) do
+ActiveRecord::Schema.define(version: 20140925205640) do
 
   create_table "currentmaps", force: true do |t|
     t.string   "id_curr"
@@ -84,6 +84,13 @@ ActiveRecord::Schema.define(version: 20140925001013) do
     t.string   "facebook"
     t.string   "twitter"
     t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

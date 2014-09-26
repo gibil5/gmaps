@@ -18,6 +18,10 @@ gem 'gon'
 
 # Bootstrap 
 gem 'bootstrap-sass', '2.3.2.0'
+#gem 'bootstrap-sass'
+
+
+
 gem 'sprockets', '2.11.0'
 # Password encryption 
 gem 'bcrypt-ruby', '3.1.2'

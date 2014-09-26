@@ -93,18 +93,41 @@ describe "Point pages" do
 
 
 
-# valid info
+# POINT - valid info
     # with capybara 
     describe "with valid information" do
       before do
+
         fill_in "Name",           with: "Raw cafe"
+        
         fill_in "Type",           with: "restaurant"
+        fill_in "Subtype",           with: "restaurant"
+
         fill_in "Info",           with: "no info"
         fill_in "Lat decimal",    with: "-12.34"
         fill_in "Long decimal",   with: "-77.89"
         fill_in "Created by",     with: "Justi"
         fill_in "Last updated by",   with: "Javier"
+
+
         #fill_in "",   with: ""
+        fill_in "Number",         with: "5"
+        fill_in "Street",         with: "Sta Marta"
+        fill_in "District",       with: "Miraflores"
+        fill_in "Phone 1",        with: "3452329"
+        fill_in "Phone 2",        with: "1234567"
+        fill_in "Reference",      with: "No reference"
+
+        fill_in "Open hours",     with: "6 to 8"
+
+        fill_in "Email",          with: "name@gmail.com"
+        fill_in "www",            with: "www.rawcafe.com"
+        fill_in "Facebook",       with: "facebook/rawcafe"
+        fill_in "Twitter",        with: "twitter/rawcafe"
+        
+        fill_in "Comments",       with: "No comments"
+        #fill_in "",   with: ""
+
       end
 
       it "should create a point" do

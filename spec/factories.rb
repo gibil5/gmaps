@@ -39,7 +39,7 @@ FactoryGirl.define do
     sequence(:name)  		{ |n| "Resto #{n}" }
     sequence(:info)  		{ |n| "Info_#{n}"}
     sequence(:lat_dec)  	{ |n| "Lat_#{n}"}
-    sequence(:long_dec)  	{ |n| "Long_#{n}"}
+    sequence(:lng_dec)  	{ |n| "Long_#{n}"}
 
 
     #factory :admin do

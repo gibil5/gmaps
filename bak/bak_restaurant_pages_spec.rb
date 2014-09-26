@@ -4,22 +4,24 @@
 require 'spec_helper'
 
 describe "Restaurant pages" do
-  subject { page }
 
+  subject { page }
 
 
 # INDEX 
   describe "index" do
     
     let(:restaurant) { FactoryGirl.create(:restaurant) }
-        #before(:each) do
+    
+    #before(:each) do
     before do
       #sign_in user
       visit restaurants_path
     end
-    
-    it { should have_title('Places in Lima') }
-    it { should have_content('Places in Lima') }
+
+    it { should have_title('All restaurants') }
+    it { should have_content('All restaurants') }
+
 
 
   # pagination 
@@ -33,8 +35,7 @@ describe "Restaurant pages" do
 
       it "should list each restaurant" do
         Restaurant.paginate(page: 1).each do |restaurant|
-          #expect(page).to have_selector('li', text: restaurant.name)
-          expect(page).to have_selector('td', text: restaurant.name)
+          expect(page).to have_selector('li', text: restaurant.name)
         end
       end
     end
@@ -50,7 +51,7 @@ describe "Restaurant pages" do
   	
     #before { visit restaurants_new_path }
     before { visit new_restaurant_path }
-      it { should have_content('New Restaurant') }
+      it { should have_content('New restaurant') }
       #it { should have_title(full_title('New restaurant')) }
   end
 
@@ -80,7 +81,7 @@ describe "Restaurant pages" do
 
 
 
-# SHOW - Profile page 
+# Profile page 
   describe "profile page" do
 
     let(:restaurant) { 

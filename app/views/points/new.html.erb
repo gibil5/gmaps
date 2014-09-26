@@ -12,14 +12,18 @@
 
     <%= form_for(@point) do |f| %>
       
-      <%= f.label :name,                  "Name" %>
-      <%= f.text_field :name %>
-      
       <%#= f.label :map_id,              "Map id" %>
       <%#= f.text_field :map_id %>
 
+
+      <%= f.label :name,                  "Name" %>
+      <%= f.text_field :name %>
+      
       <%= f.label :point_type,              "Type" %>
       <%= f.text_field :point_type %>
+
+      <%= f.label :point_subtype,              "Subtype" %>
+      <%= f.text_field :point_subtype %>
 
       <%= f.label :info,                  "Info" %>
       <%= f.text_field :info %>
@@ -40,6 +44,49 @@
       <%#= f.label :,              "" %>
       <%#= f.text_field : %>
 
+
+      <%= f.label       :ad_number,              "Number" %>
+      <%= f.text_field  :ad_number %>
+
+      <%= f.label       :ad_street,              "Street" %>
+      <%= f.text_field  :ad_street %>
+
+      <%= f.label       :ad_district,            "District" %>
+      <%= f.text_field  :ad_district %>
+
+      <%= f.label       :ad_phone_1,             "Phone 1" %>
+      <%= f.text_field  :ad_phone_1 %>
+
+      <%= f.label       :ad_phone_2,             "Phone 2" %>
+      <%= f.text_field  :ad_phone_2 %>
+
+      <%= f.label       :ad_reference,           "Reference" %>
+      <%= f.text_field  :ad_reference %>
+
+
+      <%= f.label       :open_hours,              "Open hours" %>
+      <%= f.text_field  :open_hours %>
+
+
+      <%= f.label       :email,                  "Email" %>
+      <%= f.text_field  :email %>
+
+      <%= f.label       :www,              "www" %>
+      <%= f.text_field  :www %>
+
+
+      <%= f.label       :facebook,                "Facebook" %>
+      <%= f.text_field  :facebook %>
+
+      <%= f.label       :twitter,                 "Twitter" %>
+      <%= f.text_field  :twitter %>
+
+      <%= f.label       :comments,                "Comments" %>
+      <%= f.text_field  :comments %>
+
+
+      <%#= f.label       :,              "" %>
+      <%#= f.text_field  : %>
 
       <%= f.submit "Create point", class: "btn btn-large btn-primary" %>
     <% end %>

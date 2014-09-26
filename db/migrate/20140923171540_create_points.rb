@@ -1,7 +1,9 @@
 class CreatePoints < ActiveRecord::Migration
   def change
     create_table :points do |t|
+      
       t.integer :map_id
+
       t.string :point_type
       t.string :point_subtype
 
