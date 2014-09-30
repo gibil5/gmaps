@@ -38,7 +38,17 @@
       Restaurants   <%#= f.check_box  :map_type_res,  {:name => 'Restaurants'} %><br />  <br />
       Meditation    <%#= f.check_box :map_type_med ,  {:name => 'Meditation'} %><br />   <br />
       Markets       <%#= f.check_box :map_type_mar,   {:name => 'Markets'} %><br />      <br />
+
+
+      Restaurants   <%#= f.check_box  :map_type_res   %>    <br />  <br />
+      <%#= f.check_box(object_name, method, {}, "1", "0") %>
+      Restaurants <%#= f.check_box   :map_type_res, {}, "admin", "user" %>
+      <br />
+      <%#= label_tag(:pet_dog, "I own a dog") %>
+      <%#= check_box_tag(:pet_dog) %>
+      <br />
 -->
+
 
       Restaurants   <%= f.check_box  :map_type_res   %>    <br />  <br />
       Meditation    <%= f.check_box :map_type_med    %>    <br />   <br />
