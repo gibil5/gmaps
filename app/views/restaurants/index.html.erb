@@ -2,7 +2,12 @@
 
 <% provide(:title, 'Places in Lima') %>
 
-<h1>Places in Lima</h1>
+<h1>
+  Places in Lima
+  (
+  <%= @restaurants.count %>
+  )
+</h1>
 
 <%= will_paginate %>
 

@@ -28,6 +28,12 @@ namespace :db do
     f = sheet1.row(0)
     ctr = 0
 
+
+    # Clean all entries
+    #pt = 'SNAME'.downcase
+    #Restaurant.where(:point_type == pt).destroy_all
+
+
     sheet1.each do |row|
       x = 0
       p = {}
@@ -94,9 +100,9 @@ namespace :db do
                           )
       end
       ctr += 1
-
-
     end
+    puts 'Number of items: '
+    puts ctr
   end
 
 

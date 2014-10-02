@@ -12,7 +12,7 @@ describe "Map pages" do
 
 
 # INDEX 
-  describe "Index" do
+  describe "INDEX" do
     
     #let(:map) { FactoryGirl.create(:map) }
     before(:all) { 1.times { FactoryGirl.create(:map) } }
@@ -22,12 +22,13 @@ describe "Map pages" do
       visit maps_path
     end
 
-    describe "Content and title" do
+# Titles
+    describe "Title" do
       it { should have_title('Index of Maps') }
       it { should have_content('Index of Maps') }
     end
 
-    # delete links 
+# Delete links 
     describe "Delete links" do
         it { should have_link('Delete', href: map_path(Map.first)) }
         it "should be able to delete a map" do
@@ -37,13 +38,34 @@ describe "Map pages" do
         end
     end
 
+# Show links 
+    describe "Show links" do
+        it { should have_link('Show', href: map_path(Map.first)) }
+        it "should be able to show a map" do
+            click_link('Show', match: :first)
+            #should have_content('Map for Lima') 
+            should have_content(Map.first.name) 
+        end
+    end
+
+# Edit links 
+    #describe "Edit links" do
+        #it { should have_link('Edit', href: map_path(Map.first)) }
+        #it "should be able to edit a map" do
+        #    click_link('Edit', match: :first)
+        #    should have_content('Edit') 
+        #end
+    #end
+
+
+
   end
 
 
 
 
 # CREATE 
-  describe "Creating Maps" do
+  describe "CREATE" do
 
     before { visit new_map_path }
     let(:submit) { "Create map" }
@@ -170,46 +192,35 @@ describe "Map pages" do
 
 
 # SHOW - Profile page 
-  describe "Show" do
+  describe "SHOW" do
 
-    #let(:user) { FactoryGirl.create(:user) }
-#    let(:map) { FactoryGirl.create(:map) }
+    let!(:map) { FactoryGirl.create(:map) }
 
-    #let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
-    #let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+    let!(:m1) { FactoryGirl.create(:point, map: map,  name: "Raw Cafe", 
+                                                      point_type: "restaurant", info: "some info", 
+                                                      lat_dec: "-5.0", lng_dec: "-55.0",
+                                                      created_by: "javier", last_updated_by: "javier",
+                                                      ad_number: "1", ad_street: "av. Arequipa"
+                                                      )}
 
-#    let!(:m1) { FactoryGirl.create(:point, map: map,  name: "Foo", 
-#                                                      point_type: "restaurant", info: "some info", 
-#                                                      lat_dec: "-5.0", lng_dec: "-55.0",
-#                                                      created_by: "javier", last_updated_by: "javier"
-#                                                      )}
-#    let!(:m2) { FactoryGirl.create(:point, map: map, name: "Bar",
-#                                                      point_type: "restaurant", info: "some info", 
-#                                                      lat_dec: "-5.0", lng_dec: "-55.0",
-#                                                      created_by: "javier", last_updated_by: "javier")}
+    let!(:m2) { FactoryGirl.create(:point, map: map, name: "Karma Kaghyu",
+                                                      point_type: "meditation", info: "some info", 
+                                                      lat_dec: "-5.0", lng_dec: "-55.0",
+                                                      created_by: "javier", last_updated_by: "javier",
+                                                      ad_number: "1", ad_street: "av. Arequipa"
+                                                      )}
 
+    before { visit map_path(map) }
 
-    #before { visit user_path(user) }
-#    before { visit map_path(map) }
+    it { should have_content(map.name) }
+    it { should have_title(map.name) }
 
-    #it { should have_content(user.name) }
-    #it { should have_title(user.name) }
-#    it { should have_content(map.name) }
-#    it { should have_title(map.name) }
-
-
-    #describe "microposts" do
-#    describe "points" do
-      #it { should have_content(m1.content) }
-      #it { should have_content(m2.content) }
-      #it { should have_content(user.microposts.count) }
-#      it { should have_content(m1.name) }
-#      it { should have_content(m2.name) }
-#      it { should have_content(map.points.count) }
-#    end
+    describe "points" do
+      it { should have_content(m1.name) }
+      it { should have_content(m2.name) }
+      it { should have_content(map.points.count) }
+    end
   end
-
-
 
 
 

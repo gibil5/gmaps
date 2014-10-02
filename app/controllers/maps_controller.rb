@@ -174,11 +174,6 @@ class MapsController < ApplicationController
     current_map.save 
 
 
-    
-
-
-
-
 
     #@microposts = @user.microposts.paginate(page: params[:page])
 
@@ -247,9 +242,8 @@ class MapsController < ApplicationController
 
 
     gon.pos = pos_arr
-    puts 'MARK: pos_arr'
-    puts pos_arr
-
+    #puts 'MARK: pos_arr'
+    #puts pos_arr
   end
 
 
