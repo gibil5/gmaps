@@ -14,14 +14,20 @@ class MicrocommentsController < ApplicationController
     #@feed_items = Microcomment.first
 
 
+    #id = params["id"]
+    id = Currentmap.first.id_curr
+
     if @microcomment.save
       flash[:success] = "Microcomment created!"
       #redirect_to root_url
-      redirect_to map_path(1)
+      #redirect_to map_path(1)
     else
       #render 'static_pages/home'
-      redirect_to map_path(1)
+      #redirect_to map_path(1)
     end
+    redirect_to map_path(id)
+
+
   end
 
 

@@ -39,20 +39,27 @@
       Meditation    <%#= f.check_box :map_type_med ,  {:name => 'Meditation'} %><br />   <br />
       Markets       <%#= f.check_box :map_type_mar,   {:name => 'Markets'} %><br />      <br />
 
-
       Restaurants   <%#= f.check_box  :map_type_res   %>    <br />  <br />
       <%#= f.check_box(object_name, method, {}, "1", "0") %>
       Restaurants <%#= f.check_box   :map_type_res, {}, "admin", "user" %>
       <br />
+
       <%#= label_tag(:pet_dog, "I own a dog") %>
       <%#= check_box_tag(:pet_dog) %>
       <br />
 -->
 
 
+      ALL   <%= f.check_box  :map_type_all   %>    <br />  <br />
+
       Restaurants   <%= f.check_box  :map_type_res   %>    <br />  <br />
-      Meditation    <%= f.check_box :map_type_med    %>    <br />   <br />
-      Markets       <%= f.check_box :map_type_mar   %>    <br />      <br />
+      Meditation    <%= f.check_box  :map_type_med    %>    <br />   <br />
+
+      Markets Shops     <%= f.check_box  :map_type_mar   %>    <br />      <br />
+      Yoga              <%= f.check_box  :map_type_yog   %>    <br />  <br />
+      Events            <%= f.check_box  :map_type_eve   %>    <br />  <br />
+
+
 
       <br />
 

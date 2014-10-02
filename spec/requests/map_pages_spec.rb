@@ -1,5 +1,5 @@
 
-# jr@oblique: 26/9/14
+# jr@oblique: 1/10/14
 
 
 require 'spec_helper'
@@ -12,69 +12,32 @@ describe "Map pages" do
 
 
 # INDEX 
-#  describe "index" do
+  describe "Index" do
     
-#    let(:point) { FactoryGirl.create(:point) }
-    
-#    before do
-    #  sign_in user
-#      visit points_path
-#    end
+    #let(:map) { FactoryGirl.create(:map) }
+    before(:all) { 1.times { FactoryGirl.create(:map) } }
+    after(:all)  { Map.delete_all }
 
-#    it { should have_title('All points') }
-#    it { should have_content('All points') }
+    before do
+      visit maps_path
+    end
 
+    describe "Content and title" do
+      it { should have_title('Index of Maps') }
+      it { should have_content('Index of Maps') }
+    end
 
+    # delete links 
+    describe "Delete links" do
+        it { should have_link('Delete', href: map_path(Map.first)) }
+        it "should be able to delete a map" do
+          expect do
+            click_link('Delete', match: :first)
+          end.to change(Map, :count).by(-1)
+        end
+    end
 
-# pagination 
-#    describe "pagination" do
-
-#      before(:all) { 30.times { FactoryGirl.create(:user) } }
-#      after(:all)  { User.delete_all }
-
-#      it { should have_selector('div.pagination') }
-
-#      it "should list each user" do
-#        User.paginate(page: 1).each do |user|
-#          expect(page).to have_selector('li', text: user.name)
-#        end
-#      end
-#    end
-
-
-# delete links 
-#    describe "delete links" do
-
-#      it { should_not have_link('delete') }
-
-#      describe "as an admin user" do
-#        let(:admin) { FactoryGirl.create(:admin) }
-#        before do
-#          sign_in admin
-#          visit users_path
-#        end
-
-#        it { should have_link('delete', href: user_path(User.first)) }
-#        it "should be able to delete another user" do
-#          expect do
-#            click_link('delete', match: :first)
-#          end.to change(User, :count).by(-1)
-#        end
-#        it { should_not have_link('delete', href: user_path(admin)) }
-#      end
-#    end
-#  end
-
-
-
-
-# CREATE - Signup page specification 
-#  describe "signup page" do
-#    before { visit signup_path }
-#      it { should have_content('Sign up') }
-#      it { should have_title(full_title('Sign up')) }
-#  end
-
+  end
 
 
 
@@ -88,7 +51,7 @@ describe "Map pages" do
     #let(:point) { FactoryGirl.create(:point) }
 
 
-# invalid info
+  # invalid info
     describe "with invalid information" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(Point, :count)
@@ -96,35 +59,109 @@ describe "Map pages" do
     end
 
 
-# valid info
+
+  # valid info
     describe "with valid information" do
 
-      before do
-        fill_in "Name",               with: "Raw cafe"
+      # Create Restaurant samples in the database      
+      before(:all) { 10.times { FactoryGirl.create(:restaurant) } }
+      after(:all)  { Restaurant.delete_all }
 
-        uncheck 'map_map_type_res'
-        check 'map_map_type_med'
-        uncheck 'map_map_type_mar'
+      # Restaurants 
+      describe "Restaurants" do
+        before do
+          fill_in "Name", with: "Restaurants"
+          uncheck   'map_map_type_all'
+          check   'map_map_type_res'
+          uncheck 'map_map_type_med'
+          uncheck 'map_map_type_mar'
+          uncheck 'map_map_type_yog'
+          uncheck 'map_map_type_eve'
+        end
+        it "should create a point" do
+          expect { click_button submit }.to change(Map, :count).by(1)
+        end
       end
 
-      it "should create a point" do
-        expect { click_button submit }.to change(Map, :count).by(1)
+      # Meditation 
+      describe "Meditation" do 
+        before do
+          fill_in "Name", with: "Meditation"
+          uncheck   'map_map_type_all'
+          uncheck   'map_map_type_res'
+          check 'map_map_type_med'
+          uncheck 'map_map_type_mar'
+          uncheck 'map_map_type_yog'
+          uncheck 'map_map_type_eve'
+        end
+        it "should create a point" do
+          expect { click_button submit }.to change(Map, :count).by(1)
+        end
       end
 
+      # Markets 
+      describe "Markets" do
+        before do
+          fill_in "Name", with: "Markets"
+          uncheck   'map_map_type_all'
+          uncheck   'map_map_type_res'
+          uncheck 'map_map_type_med'
+          check 'map_map_type_mar'
+          uncheck 'map_map_type_yog'
+          uncheck 'map_map_type_eve'
+        end
+        it "should create a point" do
+          expect { click_button submit }.to change(Map, :count).by(1)
+        end
+      end
 
+      # Yoga 
+      describe "Yoga" do 
+        before do
+          fill_in "Name", with: "Yoga"
+          uncheck   'map_map_type_all'
+          uncheck   'map_map_type_res'
+          uncheck 'map_map_type_med'
+          uncheck 'map_map_type_mar'
+          check 'map_map_type_yog'
+          uncheck 'map_map_type_eve'
+        end
+        it "should create a point" do
+          expect { click_button submit }.to change(Map, :count).by(1)
+        end
+      end
 
+      # Events
+      describe "Events" do 
+        before do
+          fill_in "Name", with: "Events"
+          uncheck   'map_map_type_all'
+          uncheck   'map_map_type_res'
+          uncheck 'map_map_type_med'
+          uncheck 'map_map_type_mar'
+          uncheck 'map_map_type_yog'
+          check 'map_map_type_eve'
+        end
+        it "should create a point" do
+          expect { click_button submit }.to change(Map, :count).by(1)
+        end
+      end
 
-      # Sign in the user after sign up 
-#      describe "after saving the user" do
-#        before { click_button submit }
-#        let(:user) { User.find_by(email: 'user@example.com') }
-
-#        it { should have_link('Sign out') }
-#        it { should have_title(user.name) }
-        #it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-#        it { should have_selector('div.alert.alert-success', text: 'Bienvenid@') }
-#      end
-
+      # All
+      describe "All" do 
+        before do
+          fill_in "Name", with: "All"
+          check     'map_map_type_all'
+          uncheck   'map_map_type_res'
+          uncheck   'map_map_type_med'
+          uncheck   'map_map_type_mar'
+          uncheck   'map_map_type_yog'
+          uncheck   'map_map_type_eve'
+        end
+        it "should create a point" do
+          expect { click_button submit }.to change(Map, :count).by(1)
+        end
+      end 
     end
   end
 
@@ -133,9 +170,7 @@ describe "Map pages" do
 
 
 # SHOW - Profile page 
-#  describe "profile page" do
-
-#    pending do 
+  describe "Show" do
 
     #let(:user) { FactoryGirl.create(:user) }
 #    let(:map) { FactoryGirl.create(:map) }
@@ -172,8 +207,7 @@ describe "Map pages" do
 #      it { should have_content(m2.name) }
 #      it { should have_content(map.points.count) }
 #    end
-#  end
-#  end
+  end
 
 
 

@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
 
   #match '/restaurants/:id',  to: 'restaurants#update',        via: 'post'
-  #match '/restaurants/:id/edit',  to: 'restaurants#edit',   via: 'put'
+  match '/restaurants/:id/edit',  to: 'restaurants#edit',   via: 'put'
 
   match '/maps/1',  to: 'maps#show',   via: 'put'
 

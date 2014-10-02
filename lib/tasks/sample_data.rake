@@ -59,6 +59,8 @@ namespace :db do
       www =             p['www']
       facebook =        p['facebook']
       twitter =         p['twitter']
+
+      comments =        p['comments']
       
       # =        p['']
 

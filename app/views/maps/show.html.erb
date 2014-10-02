@@ -81,20 +81,50 @@ Microcomments
     <div class="span7">
 
     <% if @map.points.any? %>
-      <% if @points_m.any? %>
-        <h3>Meditation (<%= @points_m.count %>)</h3>
+
+
+      <% if @points_med.any? %>
+        <h3>Meditation (<%= @points_med.count %>)</h3>
           <ol class="microposts">
-            <%#= render @points_r %>
-            <%= render @points_m %>
+            <%= render @points_med %>
           </ol>
       <% end %>
-      <% if @points_r.any? %>
-        <h3>Restaurants (<%= @points_r.count %>)</h3>
+
+      <% if @points_res.any? %>
+        <h3>Restaurants (<%= @points_res.count %>)</h3>
           <ol class="microposts">
-            <%= render @points_r %>
-            <%#= render @points_m %>
+            <%= render @points_res %>
           </ol>
       <% end %>
+
+      <% if @points_mar.any? %>
+        <h3>Markets (<%= @points_mar.count %>)</h3>
+          <ol class="microposts">
+            <%= render @points_mar %>
+          </ol>
+      <% end %>
+
+      <% if @points_yog.any? %>
+        <h3> Yoga (<%= @points_yog.count %>)</h3>
+          <ol class="microposts">
+            <%= render @points_yog %>
+          </ol>
+      <% end %>
+
+      <% if @points_eve.any? %>
+        <h3> Events (<%= @points_eve.count %>)</h3>
+          <ol class="microposts">
+            <%= render @points_eve %>
+          </ol>
+      <% end %>
+
+
+
+
+
+
+
+
       <%#= will_paginate @points %>
     <% end %>
     </div>
