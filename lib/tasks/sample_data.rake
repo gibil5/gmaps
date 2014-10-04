@@ -1,5 +1,5 @@
 
-# jr@oblique: 22/9/14
+# jr@oblique: 3/10/14
 
 
 namespace :db do
@@ -19,20 +19,23 @@ namespace :db do
     book = Spreadsheet.open 'app/assets/xls/restaurants.xls'
     puts book 
     
-    sheet_name = ENV['SNAME']
+    table_name = ENV['SNAME']
 
     #sheet1 = book.worksheet 'Restaurant'    
-    sheet1 = book.worksheet sheet_name
-    puts sheet_name    
+    sheet1 = book.worksheet table_name
+    puts table_name    
 
     f = sheet1.row(0)
     ctr = 0
+    created = 0
 
 
     # Clean all entries
-    #pt = 'SNAME'.downcase
+    tname = table_name.downcase
     #Restaurant.where(:point_type == pt).destroy_all
-
+    c = Restaurant.delete_all("point_type = '" + tname + "'")
+    puts 'jx: Deleted:'
+    puts c 
 
     sheet1.each do |row|
       x = 0
@@ -45,8 +48,10 @@ namespace :db do
 
       map_id =      nil
 
+      valid =           p['valid']
+
       point_type =      p['point_type']
-      point_subtype =      p['point_subtype']
+      point_subtype =   p['point_subtype']
 
       name =            p['name']
       lat_dec =         p['lat_dec']
@@ -71,8 +76,10 @@ namespace :db do
       # =        p['']
 
 
+      #puts valid == 1
 
-      if (ctr > 0) and ( (lat_dec != 'na') and (lng_dec != 'na') ) 
+      #if (ctr > 0) and ( (lat_dec != 'na') and (lng_dec != 'na') ) 
+      if ((ctr > 0) and (valid == 1))     # it is not the header...
         Restaurant.create!(  
                           map_id: map_id,
 
@@ -98,11 +105,13 @@ namespace :db do
                           facebook:       facebook,
                           twitter:        twitter
                           )
+        created += 1
       end
       ctr += 1
     end
     puts 'Number of items: '
-    puts ctr
+    puts created
+    puts 
   end
 
 
